@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Info = () => {
   return (
     <>
@@ -12,6 +14,9 @@ const Info = () => {
       Beatae consectetur unde repellendus cupiditate! Temporibus, nostrum id! Quia laudantium dolorem necessitatibus mollitia ad? Reprehenderit adipisci nam suscipit omnis facere est ullam, animi magnam quae cupiditate debitis quaerat vero nisi.
       Necessitatibus eveniet iste neque esse voluptates, quo repudiandae minus iure ad vitae. Facilis repellat repudiandae ab assumenda voluptate est a soluta hic facere commodi, maxime ex libero neque ipsum laborum.
       Qui fugit, nisi, ratione similique illo maxime nihil voluptates autem, minima sint est natus officia nemo ullam dolorum vero delectus maiores tempora impedit eveniet omnis iure totam tenetur? Dolor, quas!</p>
+      <Link to="/">
+      <button>Back to Login</button>
+      </Link>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState('')
@@ -10,9 +11,11 @@ const Login = () => {
     setUser(userData)
     setPassword(userPassword)
 
-    // if (userData && userPassword) {
-    //   window.location.href = "/admin"
-    // }
+    if (userData && userPassword) {
+      window.location.href = "/admin"
+    } else {
+     alert('Necesitamos tus datos para loguearte')
+    }
   }
 
   useEffect(() => {
@@ -32,10 +35,11 @@ const Login = () => {
           Password
           <input type="password" name="password" id="password" required />
         </label>
+        <div id="bottom-form">
+      <Link to="/info">Info</Link>
         <button type="button" onClick={() => submitData()}>Submit</button>
+      </div>
       </form>
-
-      <a href="/info">Info</a>
     </>
   );
 };
