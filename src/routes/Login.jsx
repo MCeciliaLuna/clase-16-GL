@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { LoginContext } from "../context";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -21,11 +21,9 @@ const Login = () => {
     }
   };
 
-
-  useEffect(() => {
-    console.log({ USERDATA: user, password });
-    console.log(login);
-  }, [user, password]);
+  if (login === true) {
+    return (<Navigate to="/admin" />)
+  }
 
   return (
     <>

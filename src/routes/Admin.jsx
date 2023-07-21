@@ -1,6 +1,18 @@
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { LoginContext } from "../context";
+import { useContext } from "react";
 
 const Admin = () => {
+  const [login, setLogin] = useContext(LoginContext);
+
+  if (!login) {
+    return (<Navigate to="/" />)
+  }
+
+  const logout = () => {
+    setLogin(false) 
+    return (<Navigate to="/" />);
+  }
 
     return (
       <>
@@ -41,9 +53,7 @@ const Admin = () => {
           dolorum vero delectus maiores tempora impedit eveniet omnis iure totam
           tenetur? Dolor, quas!
         </p>
-        <Link to="/">
-          <button>Back to Login</button>
-        </Link>
+          <button onClick={() => logout()}>Logout</button>
       </>
     );
   }
