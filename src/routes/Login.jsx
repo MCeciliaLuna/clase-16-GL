@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,
+  // useContext
+ } from "react";
 import { Link } from "react-router-dom";
+// import { loginContext } from "../context";
+import toast, { Toaster } from 'react-hot-toast'
 
 const Login = () => {
+  // const [login, setLogin] = useContext(loginContext);
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
 
@@ -10,21 +15,23 @@ const Login = () => {
     const userPassword = document.getElementById('password').value
     setUser(userData)
     setPassword(userPassword)
+    // setLogin(false)
 
     if (userData && userPassword) {
-      window.location.href = "/admin"
+      window.location.href ="/admin"
     } else {
-     alert('Necesitamos tus datos para loguearte')
+      toast.error('Ingresá los datos correspondientes')
     }
   }
 
   useEffect(() => {
-    console.table({"USERDATA": user, password})
+    console.log({"USERDATA": user, password})
   }, [user, password])
   
 
   return (
     <>
+    <Toaster/>
       <h1>Login</h1>
       <form>
         <label>
@@ -37,7 +44,7 @@ const Login = () => {
         </label>
         <div id="bottom-form">
       <Link to="/info">Info</Link>
-        <button type="button" onClick={() => submitData()}>Submit</button>
+        <button type="button" onClick={()=> submitData()}>Submit</button>
       </div>
       </form>
     </>
