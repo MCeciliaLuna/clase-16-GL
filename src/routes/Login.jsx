@@ -1,37 +1,35 @@
-import { useState, useEffect,
-  // useContext
- } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-// import { loginContext } from "../context";
-import toast, { Toaster } from 'react-hot-toast'
+import { LoginContext } from "../context";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-  // const [login, setLogin] = useContext(loginContext);
-  const [user, setUser] = useState('')
-  const [password, setPassword] = useState('')
+  const [login, setLogin] = useContext(LoginContext);
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
 
   const submitData = () => {
-    const userData = document.getElementById('username').value
-    const userPassword = document.getElementById('password').value
-    setUser(userData)
-    setPassword(userPassword)
-    // setLogin(false)
+    const userData = document.getElementById("username").value;
+    const userPassword = document.getElementById("password").value;
+    setUser(userData);
+    setPassword(userPassword);
 
     if (userData && userPassword) {
-      window.location.href ="/admin"
+      setLogin(true);
     } else {
-      toast.error('Ingresá los datos correspondientes')
+      toast.error("Ingresá los datos correspondientes");
     }
-  }
+  };
+
 
   useEffect(() => {
-    console.log({"USERDATA": user, password})
-  }, [user, password])
-  
+    console.log({ USERDATA: user, password });
+    console.log(login);
+  }, [user, password]);
 
   return (
     <>
-    <Toaster/>
+      <Toaster />
       <h1>Login</h1>
       <form>
         <label>
@@ -43,9 +41,11 @@ const Login = () => {
           <input type="password" name="password" id="password" required />
         </label>
         <div id="bottom-form">
-      <Link to="/info">Info</Link>
-        <button type="button" onClick={()=> submitData()}>Submit</button>
-      </div>
+          <Link to="/info">Info</Link>
+          <button type="button" onClick={() => submitData()}>
+            Submit
+          </button>
+        </div>
       </form>
     </>
   );

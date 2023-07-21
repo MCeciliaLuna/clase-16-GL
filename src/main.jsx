@@ -6,11 +6,16 @@ import Login from "./routes/Login";
 import Admin from "./routes/Admin";
 import Info from "./routes/Info";
 import ErrorPage from "./error-page";
+import { LoginProvider } from "./context";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
+    element: (
+      <LoginProvider>
+        <Login />
+      </LoginProvider>
+    ),
     errorElement: <ErrorPage />,
   },
   {
@@ -19,7 +24,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <Admin />,
+    element: (
+      <LoginProvider>
+        <Admin />
+      </LoginProvider>
+    ),
   },
 ]);
 
