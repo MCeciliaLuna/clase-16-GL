@@ -1,13 +1,8 @@
-import { createContext, useState } from "react";
+import create from "zustand";
 
-export const LoginContext = createContext();
+const loginState = create((set) => ({
+  login: false, // esto sería como el useState(false) (?)
+  setLogin: (logged) => set({ login: logged }), //este ser+ía el setLogin(true) (?) - cambiar estado?
+}));
 
-export const LoginProvider = ( {children} ) => {
-  const [login, setLogin] = useState(false);
-
-  return (
-    <LoginContext.Provider value={[login, setLogin]}>
-      {children}
-    </LoginContext.Provider>
-  );
-};
+export default loginState

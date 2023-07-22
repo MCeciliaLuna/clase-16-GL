@@ -1,10 +1,12 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { LoginContext } from "../context";
+import loginState from "../context";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-  const [login, setLogin] = useContext(LoginContext);
+  const login = loginState((state) => state.login);
+  const setLogin = loginState((state) => state.setLogin);
+
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
