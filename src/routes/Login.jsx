@@ -1,22 +1,17 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { Link, Navigate } from "react-router-dom";
-import loginState from "../context";
+import { useLogin } from "../store/useLogin";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-  const login = loginState((state) => state.login);
-  const setLogin = loginState((state) => state.setLogin);
-
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+  const login = useLogin((state) => state.login);
+  const setLogin = useLogin((state) => state.setLogin);
+  const userInputRef = useRef(null)
+  const userPasswordRef = useRef(null)
 
   const submitData = () => {
-    const userData = document.getElementById("username").value;
-    const userPassword = document.getElementById("password").value;
-    setUser(userData);
-    setPassword(userPassword);
 
-    if (userData && userPassword) {
+    if (userInputRef.current.value === 'admin' && userPasswordRef.current.value === 'admin') {
       setLogin(true);
     } else {
       toast.error("Ingresá los datos correspondientes");
@@ -34,11 +29,11 @@ const Login = () => {
       <form>
         <label>
           Username:
-          <input type="text" name="username" id="username" required />
+          <input type="text" name="username" id="username" ref={userInputRef} required />
         </label>
         <label>
           Password
-          <input type="password" name="password" id="password" required />
+          <input type="password" name="password" id="password" ref={userPasswordRef} required />
         </label>
         <div id="bottom-form">
           <Link to="/info">Info</Link>

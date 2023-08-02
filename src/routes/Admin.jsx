@@ -1,17 +1,18 @@
-import { Navigate } from "react-router-dom";
-import loginState from "../context";
+import { useNavigate } from "react-router-dom";
+import { useLogin } from "../store/useLogin";
 
 const Admin = () => {
-  const login = loginState((state) => state.login);
-  const setLogin = loginState((state) => state.setLogin);
+  const login = useLogin((state) => state.login);
+  const setLogin = useLogin((state) => state.setLogin);
+  const navigate = useNavigate()
 
   if (!login) {
-    return (<Navigate to="/" />)
+    navigate("/")
   }
 
   const logout = () => {
     setLogin(false) 
-    return (<Navigate to="/" />);
+    navigate("/")
   }
 
     return (
